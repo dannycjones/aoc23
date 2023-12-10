@@ -21,13 +21,13 @@ fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-fn process_line(input: &str) -> u64 {
+fn process_line(input: &str) -> u32 {
     let digits: Vec<char> = input.chars().filter(|c| c.is_numeric()).collect();
     let number_str = format!("{}{}", digits[0], digits[digits.len() - 1]);
     u64::from_str(&number_str).expect("should be valid integer")
 }
 
-fn process(input_lines: Vec<&str>) -> u64 {
+fn process(input_lines: Vec<&str>) -> u32 {
     input_lines
         .iter()
         .filter(|line| !line.is_empty())
@@ -57,7 +57,7 @@ mod tests {
     #[test_case(38, "pqr3stu8vwx")]
     #[test_case(15, "a1b2c3d4e5f")]
     #[test_case(77, "treb7uchet"; "same digit twice is OK")]
-    fn test_process_line(expected: u64, line: &str) {
+    fn test_process_line(expected: u32, line: &str) {
         assert_eq!(expected, process_line(line));
     }
 }
